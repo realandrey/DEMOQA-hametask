@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class AutomationPractictForm {
+public class AutomationPracticeForm {
 
     @BeforeAll
     static void beforeAll() {
