@@ -25,51 +25,51 @@ public class AutomationPracticeForm {
         open("/automation-practice-form");
 
         // Заполнение полей ввода
-        $("#firstName").setValue("John");
-        $("#lastName").setValue("Doe");
-        $("#userEmail").setValue("john.doe@example.com");
-        $("#userNumber").setValue("1234567890");
+        $("#firstName").setValue("Alex");
+        $("#lastName").setValue("Gavrilov");
+        $("#userEmail").setValue("alex.gav@mail.ru");
+        $("#userNumber").setValue("9103445775");
 
         // Выбор радиокнопки (Gender)
-        $("#gender-radio-1").parent().click();  // Male
+        $("#gender-radio-2").parent().click();  // Female
 
         // Установка даты рождения
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("October");
-        $(".react-datepicker__year-select").selectOption("1995");
-        $(".react-datepicker__day--009").click();  // 9 октября
+        $(".react-datepicker__month-select").selectOption("January");
+        $(".react-datepicker__year-select").selectOption("1984");
+        $(".react-datepicker__day--012").click();  // 12 января
 
         // Ввод предметов
         $("#subjectsInput").setValue("Math").pressEnter();
 
         // Установка чекбоксов (Hobbies)
-        $("#hobbies-checkbox-1").parent().click();  // Спорт
-        $("#hobbies-checkbox-2").parent().click();  // Чтение
+        $("#hobbies-checkbox-1").parent().click();  // Sport
+        $("#hobbies-checkbox-3").parent().click();  // Music
 
         // Загрузка файла
         $("#uploadPicture").uploadFile(new File("src/test/picture.png"));
 
         // Заполнение адреса
-        $("#currentAddress").setValue("123 Main Street");
+        $("#currentAddress").setValue("133 Street");
 
         // Выбор штата и города (Пример: NCR -> Delhi)
         $("#state").click();
         $x("//div[text()='NCR']").click();
         $("#city").click();
-        $x("//div[text()='Delhi']").click();
+        $x("//div[text()='Noida']").click();
 
         // Отправка формы
         $("#submit").click();
 
         // Проверка вывода
-        $(".modal-content").shouldHave(text("John Doe"),
-                text("john.doe@example.com"),
-                text("1234567890"),
-                text("Male"),
-                text("Math"),
+        $(".modal-content").shouldHave(text("Alex Gavrilov"),
+                text("alex.gav@mail.ru"),
+                text("9103445775"),
+                text("Female"),
+                text("January"),
                 text("Sports"),
-                text("Reading"),
-                text("123 Main Street"),
-                text("NCR Delhi"));
+                text("Music"),
+                text("133 Street"),
+                text("NCR Noida"));
     }
 }
