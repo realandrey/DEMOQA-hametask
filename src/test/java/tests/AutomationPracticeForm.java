@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -16,7 +14,7 @@ public class AutomationPracticeForm {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true; // Используется только для отладки тестов, убираем
         Configuration.timeout = 5000;
     }
 
@@ -47,29 +45,32 @@ public class AutomationPracticeForm {
         $("#hobbies-checkbox-3").parent().click();  // Music
 
         // Загрузка файла
-        $("#uploadPicture").uploadFile(new File("src/test/picture.png"));
+        $("#uploadPicture").uploadFromClasspath("picture.png");
 
         // Заполнение адреса
         $("#currentAddress").setValue("133 Street");
 
-        // Выбор штата и города (Пример: NCR -> Delhi)
+        // Выбор штата и города (Пример: NCR -> Noida)
         $("#state").click();
-        $x("//div[text()='NCR']").click();
+        $("#react-select-3-option-0").click(); // Выбор "NCR", с использованием нужного селектора, считаем от 0
         $("#city").click();
-        $x("//div[text()='Noida']").click();
+        $("#react-select-4-option-2").click(); // Выбор "Noida", с использованием нужного селектора, считаем от 0
 
         // Отправка формы
         $("#submit").click();
 
-        // Проверка вывода
-        $(".modal-content").shouldHave(text("Alex Gavrilov"),
-                text("alex.gav@mail.ru"),
-                text("9103445775"),
-                text("Female"),
-                text("January"),
-                text("Sports"),
-                text("Music"),
-                text("133 Street"),
-                text("NCR Noida"));
+        // Проверка вывода по отдельности
+        $(".modal-content").shouldHave(text("Alex Gavrilov"));
+        $(".modal-content").shouldHave(text("alex.gav@mail.ru"));
+        $(".modal-content").shouldHave(text("9103445775"));
+        $(".modal-content").shouldHave(text("Female"));
+        $(".modal-content").shouldHave(text("January"));
+        $(".modal-content").shouldHave(text("Sports"));
+        $(".modal-content").shouldHave(text("Music"));
+        $(".modal-content").shouldHave(text("133 Street"));
+        $(".modal-content").shouldHave(text("NCR Noida"));
+
+        // Проверка загрузки изображения
+        $(".modal-content").shouldHave(text("picture.png"));
     }
 }
