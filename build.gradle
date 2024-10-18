@@ -6,6 +6,10 @@ repositories {
     mavenCentral()
 }
 
+compileTestJava {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     testImplementation(
             "com.codeborne:selenide:6.19.1",
@@ -15,5 +19,5 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform{}
 }
