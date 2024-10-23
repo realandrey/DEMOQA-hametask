@@ -20,15 +20,11 @@ public class EnterprizeTest {
         // Открываем главную страницу
         open("");
 
-        // Наводим курсор на пункт меню "Solutions"
-        $$(".HeaderMenu-link") // Ищем все элементы меню
-                .findBy(Condition.text("Solutions")) // Ищем элемент по тексту "Solutions"
-                .hover(); // Наведение мыши
+        // Наводим курсор на пункт меню Solutions
+        $$(".HeaderMenu-link").findBy(Condition.text("Solutions")).hover();
 
-        // Кликаем по элементу "Enterprise" в выпадающем меню
-        $$(".HeaderMenu-dropdown a") // Ищем все ссылки в выпадающем меню
-                .findBy(Condition.text("Enterprise")) // Ищем по тексту "Enterprise"
-                .click(); // Кликаем по ссылке
+        // Кликаем на Enterprise
+        $$(".HeaderMenu-dropdown a").findBy(Condition.text("Enterprise")).click();
 
         // Проверяем, что заголовок страницы содержит нужный текст
         $("[id=\"hero-section-brand-heading\"]").shouldHave(Condition.text("The AI-powered developer platform."));
