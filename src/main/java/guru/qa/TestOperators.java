@@ -18,8 +18,8 @@ public class TestOperators {
 //}
 
     public static void main(String... args) {
-        double a = 23.05444444;
-        int b = 10;
+        int a = 23;
+        double b = 10.4444444;
         System.out.println(a - b);
     }
 }
