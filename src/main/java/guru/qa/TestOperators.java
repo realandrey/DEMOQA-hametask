@@ -3,26 +3,35 @@ package guru.qa;
 public class TestOperators {
 
     public static void main(String... args) {
-        performIntAddition();
-        performDoubleMultiplication();
-        performSubtraction();
-    }
+        // Пример 1: работа с int
+        int a = 21474;
+        int b = 100;
+        int result1 = a+b;
+        int result2 = a-b;
 
-    private static void performIntAddition() {
-        int a = 2147483647;
-        int b = 1000000000;
-        System.out.println("Сумма int: " + (a + b));
-    }
+        System.out.println(a+b);
+        System.out.println(a*b);
+        System.out.println(b-a);
+        System.out.println(a/b);
+        System.out.println(a%b);
+        System.out.println(++a);
+        System.out.println(--b);
 
-    private static void performDoubleMultiplication() {
-        double a = Double.MAX_VALUE;
-        int b = 1000000000;
-        System.out.println("Произведение double и int: " + (a * b));
-    }
+        // Пример 2: работа с double и int
+        double c = Double.MAX_VALUE;
+        int d = 1000000000;
+        System.out.println("Произведение double и int: " + (c * d));
 
-    private static void performSubtraction() {
-        int a = 23;
-        double b = 10.4444444;
-        System.out.println("Разница int и double: " + (a - b));
+        // Пример 3: работа с int и double
+        int e = 23;
+        double f = 10.4444444;
+        System.out.println("Разница int и double: " + (e - f));
+
+        //Пример 4: Логические операторы
+        boolean g = true;
+        boolean k = false;
+        System.out.println(result1 == 1 && result2 ==21374);
+        System.out.println(result1 == 21574 || result2 == 21374);
+        System.out.println(!(result1 == 21374 ));
     }
 }
