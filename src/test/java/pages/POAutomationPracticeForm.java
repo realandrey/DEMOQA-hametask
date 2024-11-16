@@ -1,50 +1,69 @@
 package pages;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import pages.POAutomationPracticeForm;
-import components.ResultModalComponent;
+import static com.codeborne.selenide.Selenide.*;
 
-public class AutomationPracticeForm {
+public class POAutomationPracticeForm {
 
-    POAutomationPracticeForm formPage = new POAutomationPracticeForm();
-    ResultModalComponent resultModal = new ResultModalComponent();
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
+    public void openPage() {
+        open("/automation-practice-form");
     }
 
-    @Test
-    void fillFormTest() {
-        formPage.openPage();
+    public void setFirstName(String firstName) {
+        $("#firstName").setValue(firstName);
+    }
 
-        formPage.setFirstName("Alex");
-        formPage.setLastName("Gavrilov");
-        formPage.setEmail("alex.gav@mail.ru");
-        formPage.setGender("Female");
-        formPage.setPhoneNumber("9103445775");
-        formPage.setBirthDate("January", "1984", "12");
-        formPage.setSubjects("Math");
-        formPage.setHobbies("Sport", "Music");
-        formPage.uploadPicture("picture.png");
-        formPage.setAddress("133 Street");
-        formPage.selectStateAndCity("NCR", "Noida");
-        formPage.submitForm();
+    public void setLastName(String lastName) {
+        $("#lastName").setValue(lastName);
+    }
 
-        resultModal.checkResult("Alex Gavrilov");
-        resultModal.checkResult("alex.gav@mail.ru");
-        resultModal.checkResult("9103445775");
-        resultModal.checkResult("Female");
-        resultModal.checkResult("January");
-        resultModal.checkResult("Sports");
-        resultModal.checkResult("Music");
-        resultModal.checkResult("133 Street");
-        resultModal.checkResult("NCR Noida");
-        resultModal.checkResult("picture.png");
+    public void setEmail(String email) {
+        $("#userEmail").setValue(email);
+    }
+
+    public void setGender(String gender) {
+        if (gender.equals("Female")) {
+            $("#gender-radio-2").parent().click();
+        }
+    }
+
+    public void setPhoneNumber(String number) {
+        $("#userNumber").setValue(number);
+    }
+
+    public void setBirthDate(String month, String year, String day) {
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
+        $(".react-datepicker__day--" + day).click();
+    }
+
+    public void setSubjects(String subject) {
+        $("#subjectsInput").setValue(subject).pressEnter();
+    }
+
+    public void setHobbies(String... hobbies) {
+        for (String hobby : hobbies) {
+            if (hobby.equals("Sport")) $("#hobbies-checkbox-1").parent().click();
+            if (hobby.equals("Music")) $("#hobbies-checkbox-3").parent().click();
+        }
+    }
+
+    public void uploadPicture(String fileName) {
+        $("#uploadPicture").uploadFromClasspath(fileName);
+    }
+
+    public void setAddress(String address) {
+        $("#currentAddress").setValue(address);
+    }
+
+    public void selectStateAndCity(String state, String city) {
+        $("#state").click();
+        $("#react-select-3-option-0").click();
+        $("#city").click();
+        $("#react-select-4-option-2").click();
+    }
+
+    public void submitForm() {
+        $("#submit").click();
     }
 }
