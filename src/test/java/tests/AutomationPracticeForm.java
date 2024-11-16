@@ -48,16 +48,16 @@ public class AutomationPracticeForm {
         $("#uploadPicture").uploadFromClasspath("picture.png");
 
         // Заполнение адреса
-        $("#currentAddress").setValue("133 Street");
+        $("#currentAddress").scrollTo().setValue("133 Street");
 
         // Выбор штата и города (Пример: NCR -> Noida)
-        $("#state").click();
+        $("#state").scrollTo().click();
         $("#react-select-3-option-0").click(); // Выбор "NCR", с использованием нужного селектора, считаем от 0
-        $("#city").click();
+        $("#city").scrollTo().click();
         $("#react-select-4-option-2").click(); // Выбор "Noida", с использованием нужного селектора, считаем от 0
 
         // Отправка формы
-        $("#submit").click();
+        $("#submit").scrollTo().click();
 
         // Проверка вывода по отдельности
         $(".modal-content").shouldHave(text("Alex Gavrilov"));
